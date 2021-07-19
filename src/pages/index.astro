@@ -4,7 +4,8 @@
     Component Imports (from any supported Framework here!) 
 */
 import Tour from '../components/Tour.astro';
-
+import Button from '../components/Button.jsx';
+import Characters from '../components/Characters.jsx';
 
 // Component Script:
 // You can write any JavaScript/TypeScript that you'd like here.
@@ -14,6 +15,9 @@ let title = 'My Astro Site';
 
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
+
+// Fetch Data
+const characters = await fetch("https://finalspaceapi.com/api/v0/character?limit=5").then(res=> res.json())
 ---
 <html lang="en">
 <head>
@@ -39,9 +43,10 @@ let title = 'My Astro Site';
             <div>
                 <img width="60" height="80" src="/assets/logo.svg" alt="Astro logo">
                 <h1>Welcome to <a href="https://astro.build/">Astro</a></h1>
+                <p><Button:load>Toggle theme</Button:load></p>
             </div>
         </header>
-
+        <Characters characters={characters} />
         <Tour />
 
         <!--
